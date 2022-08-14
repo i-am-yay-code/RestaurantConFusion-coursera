@@ -19,8 +19,8 @@ export default class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        console.log("Current state is" + JSON.stringify(values));
-        alert("Current state is" + JSON.stringify(values));
+        this.toggle()
+        this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
 
     }
 
@@ -38,8 +38,6 @@ export default class CommentForm extends Component {
                     <ModalHeader toggle={this.toggle}>Submit comment</ModalHeader>
                     <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                         <ModalBody>
-
-
                             <Row className='form-group mb-2'>
                                 <Label htmlFor="Rating" md={12}>Rating</Label>
                                 <Col md={12}>
@@ -52,7 +50,6 @@ export default class CommentForm extends Component {
                                         <option value={4}>4</option>
                                         <option value={5}>5</option>
                                     </Control.select>
-
                                 </Col>
                             </Row>
                             <Row className='form-group mb-2'>
@@ -62,14 +59,12 @@ export default class CommentForm extends Component {
                                         type="name"
                                         placeholder="Your Name"
                                         className='form-control'
-
                                         model=".name"
                                         validators={{
                                             maxLength: maxLength(15),
                                             minLength: minLength(2)
                                         }}
                                     />
-
                                     <Errors
                                         className='text-danger'
                                         show='touched'
@@ -90,21 +85,15 @@ export default class CommentForm extends Component {
                                         validators={{
                                         }}
                                     />
-
                                 </Col>
                             </Row>
-
-
                         </ModalBody>
                         <ModalFooter>
                             <Row className='form-group'>
                                 <Button color="primary" type="submit">Submit</Button>{' '}
-
                             </Row>
-
                         </ModalFooter>
                     </LocalForm>
-
                 </Modal>
             </div >
         );
