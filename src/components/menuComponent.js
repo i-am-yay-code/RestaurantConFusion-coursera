@@ -3,14 +3,16 @@ import {
     CardTitle, Breadcrumb, BreadcrumbItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
+import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
 
 
 function RenderMenuItem({ dish }) {
+
     return (
         <Card key={dish.id}>
             <Link to={`/menu/${dish.id}`}>
-                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                <CardImg width="100%" src={baseUrl + dish.image.replace("/assets/images/", "").replace("images/", "")} alt={dish.name} />
                 <CardImgOverlay>
                     <CardTitle>{dish.name}</CardTitle>
                 </CardImgOverlay>
@@ -24,7 +26,7 @@ function RenderMenuItem({ dish }) {
 
 
 const Menu = (props) => {
-    const menu = props.dishes.map((dish) => {
+    const menu = props.dishes.dishes.map((dish) => {
         return (
             <div key={dish.id} className="col-sm-12 col-md-5 m-1">
                 <RenderMenuItem dish={dish} />

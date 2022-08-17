@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Component } from "react";
 import CommentForm from "./CommentForm";
 import { Loading } from './LoadingComponent';
-
+import { baseUrl } from '../shared/baseUrl';
 
 
 
@@ -66,10 +66,13 @@ class DishDetail extends Component {
             }
 
             const RenderDish = ({ dish }) => {
+                let imageUrlTemp = baseUrl + dish.image;
+                let imageUrl = imageUrlTemp.replace("/assets/images/", "");
+                console.log(imageUrl)
                 if (dish != null)
                     return (
                         <Card>
-                            <CardImg top src={dish.image} alt={dish.name} />
+                            <CardImg top src={imageUrl} alt={dish.name} />
                             <CardBody>
                                 <CardTitle>{dish.name}</CardTitle>
                                 <CardText>{dish.description}</CardText>
